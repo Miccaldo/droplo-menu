@@ -3,9 +3,9 @@ import { PlusButtonProps } from "./plus-button.types";
 import { Button } from "../button/button";
 import Image from "next/image";
 
-export const PlusButton: FC<PlusButtonProps> = ({ className, children }) => {
+export const PlusButton: FC<PlusButtonProps> = ({ className, children, ...props }) => {
     return (
-        <Button variant="primary" className={`flex items-center gap-x-2 ${className}`}>
+        <Button variant="primary" className={`flex items-center gap-x-2 ${className}`} {...props}>
             <Image src='/images/icons/plus-rounded.svg' alt="Plus icon" width={17} height={17}/>
             {children}
         </Button>

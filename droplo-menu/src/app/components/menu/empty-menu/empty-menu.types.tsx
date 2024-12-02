@@ -1,1 +1,0 @@
-export type EmptyMenuProps = React.ComponentProps<"section">;
