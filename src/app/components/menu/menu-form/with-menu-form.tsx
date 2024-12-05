@@ -1,7 +1,6 @@
 import { ComponentType, FC, useState} from "react";
 import { WithMenuFormType } from "./menu-form.types";
 import { MenuForm } from "./menu-form";
-import { MenuItemType } from "../menu-item/menu-item.types";
 import { Button } from "../../ui/button/button";
 import { MenuFormType } from "./menu-form.types";
 

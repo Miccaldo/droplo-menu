@@ -20,6 +20,7 @@ export const MenuList: FC<MenuListProps> = ({menu, menuLocal, level, parentId=nu
               menu={menu}
               menuLocal={menuLocal}
               { ...menuItem}
+              minLevel={Math.min(...menuLocal.map(item => item.level))}
               level={level}  />
           )
         })}

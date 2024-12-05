@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { MenuItemType } from "../../components/menu/menu-item/menu-item.types";
-import { MenuFormType } from "@/app/components/menu/menu-form/menu-form.types";
 
 export const useMenuList = () => {
     const [menu, setMenu] = useState<MenuItemType[]>([]);
@@ -29,6 +28,7 @@ export const useMenuList = () => {
         menu,
         appendMenuItem,
         updateMenuItem,
-        removeMenuItem
+        removeMenuItem,
+        setMenu
     }
 }

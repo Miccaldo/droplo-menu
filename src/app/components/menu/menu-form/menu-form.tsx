@@ -19,6 +19,8 @@ export const MenuForm: FC<MenuFormProps> & { Actions: FC<{ children: ReactNode }
         }
     });
 
+    console.log(initMenuItem)
+
     const onSubmit = (data: MenuFormType) => {
         const menuItem = id ? { id, ...data} : data;
         onSubmitMenuItem(menuItem);

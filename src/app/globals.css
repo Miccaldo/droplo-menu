@@ -19,3 +19,7 @@ h1 {
 h2, h3 {
   @apply font-semibold text-text-accent;
 }
+
+.menu-item:first-child > div {
+  @apply rounded-t-md;
+}

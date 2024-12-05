@@ -1,6 +1,6 @@
 'use client';
 import { createContext, FC, useContext } from "react"
-import { MenuProviderProps, WithMenuPropsType } from "./menu.types";
+import { MenuProviderProps } from "./menu.types";
 import { useMenuList } from "@/app/hooks/menu/use-menu-list";
 import { MenuContextType } from "./menu.types";
 
@@ -8,18 +8,21 @@ const initContextValues: MenuContextType = {
     menu: [],
     appendMenuItem: () => {},
     removeMenuItem: () => {},
-    updateMenuItem: () => {}
+    updateMenuItem: () => {},
+    setMenu: () => {}
 }
 const MenuContext = createContext<MenuContextType>(initContextValues);
 
 export const MenuProvider: FC<MenuProviderProps> = ({children}) => {
-    const { menu, appendMenuItem, updateMenuItem, removeMenuItem } = useMenuList();
+    const { menu, appendMenuItem, updateMenuItem, removeMenuItem, setMenu } = useMenuList();
+
     return (
         <MenuContext.Provider value={{
                                         menu, 
                                         appendMenuItem,
                                         updateMenuItem,
-                                        removeMenuItem
+                                        removeMenuItem,
+                                        setMenu
                                     }}>
             {children}
         </MenuContext.Provider>

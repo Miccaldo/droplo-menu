@@ -36,6 +36,7 @@ export default {
       },
       boxShadow: {
         border: `0 0 0 1px ${colors.gray[300]}`,
+        'border-accent': `0 0 0 1px ${colors.gray[400]}`,
         'border-error': `0 0 0 1px ${colors.red[300]}`
       },
       width: {

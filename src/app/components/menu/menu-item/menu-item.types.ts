@@ -11,5 +11,15 @@ export type MenuItemType = {
 
 export type MenuItemProps = React.ComponentProps<"div"> & MenuItemType & MenuFormEvents & MenuFormWrappedProps & {
     menu: MenuItemType[],
-    menuLocal: MenuItemType[]
+    menuLocal: MenuItemType[],
+    isMenuCreator?: boolean,
+    minLevel: number
 };
+
+export type ActionsDesktopType = React.ComponentProps<"div"> & {
+    id: string,
+    menuIncludesMenuItem: boolean,
+    handleDeleteItem: () => void,
+    openForm?: (isEditing?: boolean) => void
+}
+export type ActionsMobileType = ActionsDesktopType

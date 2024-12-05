@@ -10,7 +10,7 @@ import { routing } from "@/app/routing/routing";
 
 export const useCreateMenu = (menuId?: string) => {
     const router = useRouter();
-    const { menu, appendMenuItem, updateMenuItem } = useMenuContext();
+    const { menu, appendMenuItem, updateMenuItem, setMenu } = useMenuContext();
 
     const currentMenuItem = menu.find(item => item.id === menuId);
     const menuIds = new Set(menu.map(item => item.id));
@@ -20,7 +20,7 @@ export const useCreateMenu = (menuId?: string) => {
     const { createMenuItem, editMenuItem } = useMenuItem([...menuChildren, ...menu]);
 
     const handleCreateChildMenu = (menuItem: MenuFormType) => {
-        const payload: CreateMenuItemPayload = { ...menuItem, level: 1};
+        const payload: CreateMenuItemPayload = { ...menuItem, level: 0};
         if(currentMenuItem){
             payload.parentId = currentMenuItem.id;
             payload.level = currentMenuItem.level + 1
@@ -30,7 +30,7 @@ export const useCreateMenu = (menuId?: string) => {
     }
 
     const handleEditChildMenu = (menuItem: Required<MenuFormType> & { id: MenuItemType['id']}) => {
-        const editedChildMenuItem = editMenuItem({ id: menuItem.id, payload: { ...menuItem, level: 0}});
+        const editedChildMenuItem = editMenuItem({ id: menuItem.id, payload: { ...menuItem}});
         const currentChildMenuItemIndex = menuChildren.findIndex(item => item.id === editedChildMenuItem.id);
         if(currentChildMenuItemIndex !== -1){
             menuChildren[currentChildMenuItemIndex] = { ...menuChildren[currentChildMenuItemIndex], ...editedChildMenuItem}
@@ -53,12 +53,12 @@ export const useCreateMenu = (menuId?: string) => {
             const childrenToCreate = menuChildren.filter(childMenu => !menuIds.has(childMenu.id));
             childrenToCreate.forEach(menuChild => {
                 menuChild.parentId = createdMenuItem.id;
+                menuChild.level = menuChild.level + 1;
                 appendMenuItem(menuChild);
             });
         }else{
-            const editedMenuItem = editMenuItem({ id: currentMenuItem.id, payload: { ...menuItem, level: 0}});
+            const editedMenuItem = editMenuItem({ id: currentMenuItem.id, payload: { ...menuItem}});
             updateMenuItem(editedMenuItem);
-            
             menuChildren.forEach(menuChild => {
                 updateMenuItem(menuChild);
             });
@@ -87,6 +87,8 @@ export const useCreateMenu = (menuId?: string) => {
         handleBack,
         currentMenuItem,
         menu,
-        menuChildren
+        menuChildren,
+        setMenu,
+        setMenuChildren
     }
 }

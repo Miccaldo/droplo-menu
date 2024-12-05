@@ -1,10 +1,8 @@
-import { useMenuContext } from "@/app/components/menu/menu/menu-provider";
-import { CreateMenuItemPayload, CreateMenuItemType, EditMenuItemType, UseMenuItemType } from "./menu.types";
+import { CreateMenuItemType, EditMenuItemType, UseMenuItemType } from "./menu.types";
 import { randomId } from "@/app/utils/random-id";
 import { MenuItemType } from "@/app/components/menu/menu-item/menu-item.types";
 
 export const useMenuItem: UseMenuItemType = (menu) => {
-    //const { menu, appendMenuItem, removeMenuItem, updateMenuItem } = useMenuContext();
     
     const createMenuItem: CreateMenuItemType = ({payload}) => {
         const id = randomId(6);

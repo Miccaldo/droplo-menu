@@ -9,11 +9,11 @@ export const withMenuProps = <T extends object>(
 ): FC<Omit<T, keyof WithMenuPropsType>> => {
   const ComponentWithMenuProps: FC<Omit<T, keyof WithMenuPropsType>> = (props) => {
       
-      const { menu, appendMenuItem, updateMenuItem, removeMenuItem } = useMenuContext();
+      const { menu, appendMenuItem, updateMenuItem, removeMenuItem, setMenu } = useMenuContext();
       const { editMenuItem } = useMenuItem(menu);
 
       const handleEditMenuItem = (menuItem: Required<MenuFormType>) => {
-        const editedMenuItem = editMenuItem({ id: menuItem.id, payload: { ...menuItem, level: 0}});
+        const editedMenuItem = editMenuItem({ id: menuItem.id, payload: { ...menuItem}});
         let currentMenuItem = menu.find(item => item.id === editedMenuItem.id);
         if(currentMenuItem){
           currentMenuItem = { ...currentMenuItem, ...editedMenuItem};
@@ -24,6 +24,7 @@ export const withMenuProps = <T extends object>(
       return (
           <WrappedComponent
               {...(props as T)}
+              setMenu={setMenu}
               menu={menu}
               menuLocal={menu}
               onCreateMenuItem={appendMenuItem}

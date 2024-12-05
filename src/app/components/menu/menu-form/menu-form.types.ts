@@ -1,7 +1,5 @@
 import { PropsWithChildren } from "react"
 import { MenuItemType } from "../menu-item/menu-item.types"
-import { FormikValues } from "formik"
-import { FormikHelpers } from "formik"
 
 export type MenuFormType = {
     id?: MenuItemType['id'],
@@ -39,12 +37,6 @@ export type MenuFormProps = React.ComponentProps<"div"> & PartialMenuFormProps &
     onSubmitMenuItem: (menuItem: MenuFormType) => void,
     onValidateForm?: (isValid: boolean) => void
 }
-
-export type HandleChangeFormik = (
-    e: React.ChangeEvent<HTMLInputElement>, 
-    setFieldValue: FormikHelpers<FormikValues>['setFieldValue'], 
-    values: MenuFormType
-) => void
 
 export type WithMenuFormType = PropsWithChildren & Partial<Omit<MenuFormEvents, 'onDeleteMenuItem'>> & Partial<PartialMenuFormProps>
 
