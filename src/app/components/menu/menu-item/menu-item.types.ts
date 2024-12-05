@@ -5,9 +5,11 @@ export type MenuItemType = {
     id: string,
     name: string,
     url?: string,
-    parentId?: string | null
+    parentId?: string | null,
+    level: number
 }
 
 export type MenuItemProps = React.ComponentProps<"div"> & MenuItemType & MenuFormEvents & MenuFormWrappedProps & {
-    menu: MenuItemType[]
+    menu: MenuItemType[],
+    menuLocal: MenuItemType[]
 };

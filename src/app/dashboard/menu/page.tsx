@@ -1,12 +1,11 @@
-import { Metadata } from "next";
+'use client';
 import Menu from "@/app/components/menu/menu/menu";
-
-export const metadata: Metadata = {
-  title: "Menu"
-};
+import { useRouter } from "next/navigation";
+import { routing } from "@/app/routing/routing";
 
 export default function MenuPage() {
+  const router = useRouter();
   return (
-    <Menu />
+      <Menu parentId={null} onAddMenuItem={()=> router.push(routing["/dashboard/menu/create"])}/>
   )
 }

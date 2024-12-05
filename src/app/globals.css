@@ -12,3 +12,10 @@ body {
   font-family: 'Inter', sans-serif;
   color: var(--text-color-primary);
 }
+
+h1 {
+  @apply font-bold text-text-accent;
+}
+h2, h3 {
+  @apply font-semibold text-text-accent;
+}

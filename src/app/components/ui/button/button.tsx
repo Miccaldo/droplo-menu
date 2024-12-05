@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { ButtonProps } from "./button.types";
 
-export const Button: FC<ButtonProps> = ({variant='primary', className='', children, ...props}) => {
+export const Button: FC<ButtonProps> = ({variant='primary', disabled, className='', children, ...props}) => {
 
     const getVariantStyles = () : string => {
         if(variant === 'primary'){
@@ -14,7 +14,7 @@ export const Button: FC<ButtonProps> = ({variant='primary', className='', childr
     }
 
     return (
-        <button className={`${getVariantStyles()} transition-colors rounded-lg px-3.5 py-2.5 text-sm leading-5 font-semibold ${className}`} {...props}>
+        <button disabled={disabled} className={`${getVariantStyles()} transition-colors rounded-lg px-3.5 py-2.5 text-sm leading-5 font-semibold ${className} ${disabled ? 'pointer-events-none grayscale opacity-20' : ''}`} {...props}>
             {children}
         </button>
     )

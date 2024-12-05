@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from 'tailwindcss/colors';
 
 export default {
   content: [
@@ -10,9 +11,10 @@ export default {
     extend: {
       colors: {
         faded: '#F9FAFB',
-        slate: {
+        'footer-ui': '#f5f5f5',
+        text: {
           'primary': 'var(--text-color-primary)',
-          'seconday': 'var(--text-color-seconday)',
+          'seconday': 'var(--text-color-secondary)',
           'accent': 'var(--text-color-accent)'
         },
         violet: {
@@ -22,11 +24,22 @@ export default {
         },
         gray: {
           'light': '#D0D5DD'
+        },
+        border: {
+          primary: '#D0D5DD',
+          secondary: '#EAECF0'
         }
       },
       spacing: {
         '2.5': '0.625rem',
         '3.5': '0.875rem'
+      },
+      boxShadow: {
+        border: `0 0 0 1px ${colors.gray[300]}`,
+        'border-error': `0 0 0 1px ${colors.red[300]}`
+      },
+      width: {
+        'fit': 'fit-content'
       }
     },
   },

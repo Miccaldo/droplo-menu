@@ -1,20 +1,34 @@
 import { ComponentType, FC} from "react";
 import { WithMenuPropsType } from "./menu.types";
-import { useMenuList } from "@/app/hooks/menu/use-menu-list";
+import { useMenuContext } from "./menu-provider";
+import { MenuFormType } from "../menu-form/menu-form.types";
+import { useMenuItem } from "@/app/hooks/menu/use-menu-item";
 
 export const withMenuProps = <T extends object>(
   WrappedComponent: ComponentType<T>
 ): FC<Omit<T, keyof WithMenuPropsType>> => {
   const ComponentWithMenuProps: FC<Omit<T, keyof WithMenuPropsType>> = (props) => {
-      const { menu, handleCreateMenuItem, handleEditMenuItem, handleDeleteMenuItem } = useMenuList();
+      
+      const { menu, appendMenuItem, updateMenuItem, removeMenuItem } = useMenuContext();
+      const { editMenuItem } = useMenuItem(menu);
+
+      const handleEditMenuItem = (menuItem: Required<MenuFormType>) => {
+        const editedMenuItem = editMenuItem({ id: menuItem.id, payload: { ...menuItem, level: 0}});
+        let currentMenuItem = menu.find(item => item.id === editedMenuItem.id);
+        if(currentMenuItem){
+          currentMenuItem = { ...currentMenuItem, ...editedMenuItem};
+          updateMenuItem(currentMenuItem);
+        }
+      }
 
       return (
           <WrappedComponent
               {...(props as T)}
               menu={menu}
-              onCreateMenuItem={handleCreateMenuItem}
+              menuLocal={menu}
+              onCreateMenuItem={appendMenuItem}
               onEditMenuItem={handleEditMenuItem}
-              onDeleteMenuItem={handleDeleteMenuItem}
+              onDeleteMenuItem={removeMenuItem}
           />
       );
   };

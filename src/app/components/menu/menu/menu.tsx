@@ -7,14 +7,34 @@ import { withMenuProps } from "./with-menu-props"
 import { FC } from "react"
 import { MenuProps } from "./menu.types"
 
-export const Menu: FC<MenuProps> = ({openForm, menu, onCreateMenuItem, onDeleteMenuItem, onEditMenuItem, children}) => {
-    return menu.length > 0 ? 
-        <div>
-            <MenuList menu={menu} onCreateMenuItem={onCreateMenuItem} onDeleteMenuItem={onDeleteMenuItem} onEditMenuItem={onEditMenuItem} /> 
-            {children}
-            <Button variant="secondary" onClick={() => openForm(false)}>Dodaj pozycję menu</Button>
+export const Menu: FC<MenuProps> = ({parentId, openForm, menu, menuLocal, onCreateMenuItem, onDeleteMenuItem, onEditMenuItem, onAddMenuItem, children}) => {
+
+    const extraProps = onAddMenuItem ? { onClick: () => { onAddMenuItem(); }} : {};
+    const filteredMenu = menuLocal.filter(item => item.parentId === parentId);
+    return filteredMenu.length > 0 ? 
+        <div className="rounded-md border border-border-primary bg-faded">
+            <MenuList parentId={parentId} menu={menu} menuLocal={menuLocal} level={0} onCreateMenuItem={onCreateMenuItem} onDeleteMenuItem={onDeleteMenuItem} onEditMenuItem={onEditMenuItem} /> 
+            <div className="">
+                {children}
+            </div>
+            <div className="py-5 px-6 bg-footer-ui rounded-md">
+                <Button variant="secondary" onClick={() =>{
+                    if(onAddMenuItem){
+                        onAddMenuItem();
+                    }else{
+                        openForm(false);
+                    }
+                }}>Dodaj pozycję menu</Button>
+            </div>
         </div> 
-        : <EmptyMenu onCreateMenuItem={onCreateMenuItem} />
+        : <EmptyMenu 
+            onCreateMenuItem={onCreateMenuItem} 
+            onEditMenuItem={onEditMenuItem} 
+            onDeleteMenuItem={onDeleteMenuItem} 
+            { ...extraProps}
+             />
 }
+
+export const MenuWithForm = withMenuForm(Menu);
 
 export default withMenuProps(withMenuForm(Menu));

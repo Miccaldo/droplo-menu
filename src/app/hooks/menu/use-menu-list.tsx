@@ -1,22 +1,23 @@
 import { useState } from "react";
 import { MenuItemType } from "../../components/menu/menu-item/menu-item.types";
+import { MenuFormType } from "@/app/components/menu/menu-form/menu-form.types";
 
 export const useMenuList = () => {
     const [menu, setMenu] = useState<MenuItemType[]>([]);
 
-    const handleCreateMenuItem = (menuItem: MenuItemType) => {
-      setMenu([...menu, menuItem])
+    const appendMenuItem = (menuItem: MenuItemType) => {
+      setMenu(prevState => [...prevState, menuItem])
     }
 
-    const handleEditMenuItem = (menuItem: MenuItemType) => {
+    const updateMenuItem = (menuItem: MenuItemType) => {
       const currentMenuItemIndex = menu.findIndex(item => item.id === menuItem.id);
       if(currentMenuItemIndex !== -1){
         menu[currentMenuItemIndex] = menuItem;
-        setMenu([...menu]);
+        setMenu(() => [...menu]);
       }
     }
 
-    const handleDeleteMenuItem = (menuItemId: string) => {
+    const removeMenuItem = (menuItemId: string) => {
       const currentMenuItemIndex = menu.findIndex(item => item.id === menuItemId);
       if(currentMenuItemIndex !== -1){
         menu.splice(currentMenuItemIndex, 1);
@@ -26,8 +27,8 @@ export const useMenuList = () => {
 
     return {
         menu,
-        handleCreateMenuItem,
-        handleEditMenuItem,
-        handleDeleteMenuItem
+        appendMenuItem,
+        updateMenuItem,
+        removeMenuItem
     }
 }
