@@ -28,11 +28,11 @@ export const ActionsMobile: FC<ActionsMobileType> = ({id, handleDeleteItem, open
             <Image src='/images/icons/hamburger.svg' alt="Hamburger" onClick={() => setOpened(!opened)} width={17} height={17}/>
             { opened ? (
                 <div className="absolute right-5 top-0 bg-white text-sm text-nowrap border rounded-md z-10">
-                    <p className={`py-2 px-4 hover:bg-neutral-50 border-b ${!menuIncludesMenuItem ? 'pointer-events-none grayscale opacity-30' : ''}`} onClick={(e) =>{
+                    <p className={`py-2 px-4 hover:bg-neutral-50 border-b ${!menuIncludesMenuItem ? 'pointer-events-none grayscale opacity-30' : ''}`} onClick={() =>{
                     router.push(`${routing["/dashboard/menu/create"]}/${id}`)
                 } }>Dodaj pozycję menu</p>
                     <p className="py-2 px-4 hover:bg-neutral-50 border-b" onClick={() => {
-                        openForm && openForm(true);
+                        openForm?.(true);
                         setOpened(false);
                     } }>Edytuj</p>
                     <p className="py-2 px-4 hover:bg-neutral-50 border-b" onClick={handleDeleteItem}>Usuń</p>

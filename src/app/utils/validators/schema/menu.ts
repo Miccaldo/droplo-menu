@@ -1,6 +1,3 @@
-import { JSONSchemaWithErrors } from "../validate.types";
-import { MenuFormSchemaType } from "../validate.types";
-import { MenuFormType } from "@/app/components/menu/menu-form/menu-form.types";
 import Joi from "joi";
 
 export const menuFormSchema: Joi.ObjectSchema = Joi.object({

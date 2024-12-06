@@ -1,7 +1,7 @@
 import { MenuItemType } from "@/app/components/menu/menu-item/menu-item.types"
 import { MenuFormEvents } from "@/app/components/menu/menu-form/menu-form.types"
 import { DragEndEvent } from "@dnd-kit/core"
-import { SensorDescriptor } from "@dnd-kit/core"
+import { SensorDescriptor, SensorOptions } from "@dnd-kit/core"
 import { ReactNode } from "react"
 
 export type CreateMenuItemPayload = Omit<MenuItemType, 'id'>
@@ -25,5 +25,5 @@ export type DragMenuProps = React.ComponentProps<"div"> & {
 export type DragMenuType = (params: DragMenuProps) => {
     drawMenu: (currentParentId?: string | null, menuItemNodes?: ReactNode[]) => ReactNode[];
     handleDragEnd: (event: DragEndEvent) => void;
-    sensors: SensorDescriptor<any>[];
+    sensors: SensorDescriptor<SensorOptions>[];
 }

@@ -1,30 +1,24 @@
-import { useSensors, useSensor, TouchSensor, MouseSensor } from "@dnd-kit/core";
+import { useSensors, useSensor, TouchSensor, MouseSensor, DragEndEvent } from "@dnd-kit/core";
 import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { DragMenuType } from "./menu.types";
 import MenuItem from "@/app/components/menu/menu-item/menu-item";
 
-export const useDragMenu: DragMenuType = ({menu, menuLocal, setMenu, parentId, onCreateMenuItem, onDeleteMenuItem, onEditMenuItem, isMenuCreator}) => {
+export const useDragMenu: DragMenuType = ({menu, menuLocal, setMenu, onCreateMenuItem, onDeleteMenuItem, onEditMenuItem, isMenuCreator}) => {
     const usedIds = new Set();
     const sensors = useSensors(
         useSensor(MouseSensor),
         useSensor(TouchSensor)
       );
 
-    const handleDragEnd = (event: any) => {
+    const handleDragEnd = (event: DragEndEvent) => {
         const { active, over } = event;
-        if (active.id !== over.id) {
+        if (active.id !== over?.id) {
             setMenu((items) => {
                 const oldIndex = items.findIndex(item => item.id === active.id);
-                const newIndex = items.findIndex(item => item.id === over.id);
-                return arrayMove(items, oldIndex, newIndex);
-            });
-            setMenu((items) => {
-                const oldIndex = items.findIndex(item => item.id === active.id);
-                const newIndex = items.findIndex(item => item.id === over.id);
-
-                return items.map((item, index) => {
+                const newIndex = items.findIndex(item => item.id === over?.id);
+                const switchedArray = items.map((item, index) => {
                     if (index === oldIndex) {
                         return { ...item, parentId: items[newIndex].parentId, level: items[newIndex].level, id: items[newIndex].id };
                     }
@@ -33,12 +27,14 @@ export const useDragMenu: DragMenuType = ({menu, menuLocal, setMenu, parentId, o
                     }
                     return item;
                 });
+                
+                return arrayMove(switchedArray, oldIndex, newIndex);
             });
         }
     };
 
     const drawMenu = (currentParentId: string | null=null, menuItemNodes: React.ReactNode[]=[]) => {
-        for(let menuItem of menuLocal){
+        for(const menuItem of menuLocal){
             const { id, level, name, parentId, url } = menuItem;
             if(!usedIds.has(id) && parentId === currentParentId){
                 menuItemNodes.push(

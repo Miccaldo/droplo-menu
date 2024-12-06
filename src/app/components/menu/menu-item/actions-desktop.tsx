@@ -10,7 +10,7 @@ export const ActionsDesktop: FC<ActionsDesktopType> = ({id, handleDeleteItem, op
         <div className="hidden md:block">
             <Button className="rounded-r-none" variant="secondary" onClick={handleDeleteItem}>Usuń</Button>
             <Button className="rounded-r-none rounded-l-none" variant="secondary" onClick={() => openForm && openForm(true)}>Edytuj</Button>
-            <Button className="rounded-l-none" variant="secondary" onClick={(e) =>{
+            <Button className="rounded-l-none" variant="secondary" onClick={() =>{
                 router.push(`${routing["/dashboard/menu/create"]}/${id}`)
             } } disabled={!menuIncludesMenuItem}>Dodaj pozycję menu</Button>
         </div>

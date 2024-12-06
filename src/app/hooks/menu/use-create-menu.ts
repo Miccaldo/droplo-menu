@@ -13,6 +13,7 @@ export const useCreateMenu = (menuId?: string) => {
     const { menu, appendMenuItem, updateMenuItem, setMenu } = useMenuContext();
 
     const currentMenuItem = menu.find(item => item.id === menuId);
+
     const menuIds = new Set(menu.map(item => item.id));
 
     const filteredChildrenMenu = [...menu.filter(item => (item.parentId !== null && item.id !== menuId))];

@@ -1,7 +1,6 @@
 import { MenuItemType } from "../menu-item/menu-item.types"
 import { MenuFormEvents } from "../menu-form/menu-form.types";
 import { MenuFormWrappedProps } from "../menu-form/menu-form.types";
-import { MenuFormType } from "../menu-form/menu-form.types";
 
 export type WithMenuPropsType = MenuFormEvents & MenuFormWrappedProps & {
     menu: MenuItemType[]

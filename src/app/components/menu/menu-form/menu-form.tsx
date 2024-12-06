@@ -19,16 +19,12 @@ export const MenuForm: FC<MenuFormProps> & { Actions: FC<{ children: ReactNode }
         }
     });
 
-    console.log(initMenuItem)
-
     const onSubmit = (data: MenuFormType) => {
         const menuItem = id ? { id, ...data} : data;
         onSubmitMenuItem(menuItem);
     };
 
-    useEffect(() => {
-        onValidateForm && onValidateForm(formState.isValid)
-    }, [formState.isValid])
+    useEffect(() => (onValidateForm && onValidateForm(formState.isValid)), [formState.isValid])
 
     return (
         <div>
@@ -81,5 +77,6 @@ export const MenuForm: FC<MenuFormProps> & { Actions: FC<{ children: ReactNode }
 MenuForm.Actions = ({ children }: React.ComponentProps<"div">) => (
     <div>{children}</div>
 );
+MenuForm.Actions.displayName = "MenuForm.Actions";
     
     

@@ -1,23 +1,16 @@
 'use-client'
-import { FC, useState, useRef, useEffect } from "react"
+import { FC } from "react"
 import { MenuItemProps } from "./menu-item.types"
-import { Button } from "../../ui/button/button"
 import { withMenuForm } from "../menu-form/with-menu-form"
 import Image from "next/image"
-import {MenuList} from "../menu-list/menu-list"
-import { useRouter } from "next/navigation"
-import { routing } from "@/app/routing/routing"
 import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable"
-import { ActionsDesktopType } from "./menu-item.types"
-import { ActionsMobileType } from "./menu-item.types"
 import { ActionsMobile } from "./actions-mobile"
 import { ActionsDesktop } from "./actions-desktop"
 
 
-export const MenuItem: FC<MenuItemProps> = ({id, name, url, openForm, onCreateMenuItem, onEditMenuItem, onDeleteMenuItem, menu, minLevel, menuLocal, children, level, isMenuCreator}) => {
+export const MenuItem: FC<MenuItemProps> = ({id, name, url, openForm, onDeleteMenuItem, menu, minLevel, children, level}) => {
 
-    const router = useRouter();
     const {
         attributes,
         listeners,
@@ -32,8 +25,7 @@ export const MenuItem: FC<MenuItemProps> = ({id, name, url, openForm, onCreateMe
     const style = {
         transform: CSS.Transform.toString(transform),
         transition,
-        marginLeft: `${offset}px`,
-        cursor: "grab",
+        marginLeft: `${offset}px`
     };
     
     const handleDeleteItem = () => {
@@ -45,10 +37,10 @@ export const MenuItem: FC<MenuItemProps> = ({id, name, url, openForm, onCreateMe
     }
 
     return (
-        <div className='bg-faded menu-item' ref={setNodeRef} style={style} {...attributes} >
+        <div className='bg-faded menu-item cursor-auto' ref={setNodeRef} style={style} {...attributes} >
             <div className="px-6 py-4 flex justify-between items-center bg-white shadow-border">
                 <div className="flex gap-x-3">
-                    <Image src='/images/icons/drag.svg' alt="Plus icon" width={17} height={17} {...listeners}/>
+                    <Image className="cursor-grab" src='/images/icons/drag.svg' alt="Plus icon" width={17} height={17} {...listeners}/>
                     <div className="text-sm">
                         <h3 className="leading-5 mb-2">{name}</h3>
                         <div className="ledaing-5">{url}</div>

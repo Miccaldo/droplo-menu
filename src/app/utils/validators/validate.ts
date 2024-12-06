@@ -1,14 +1,4 @@
-import Ajv from "ajv";
-import addErrors from 'ajv-errors';
-import addFormats from 'ajv-formats';
-import ajvErrors from 'ajv-errors';
-import { JSONSchemaWithErrors, JSONSchemaErrorResponse } from "./validate.types";
-import { FormikValues } from "formik";
 import Joi from "joi";
-
-const ajv = new Ajv({allErrors: true, useDefaults: true});
-addFormats(ajv);
-ajvErrors(ajv);
 
 export const validate = <T>(schema: Joi.ObjectSchema<T>) => {
     return (values: T): Partial<Record<keyof T, string>> => {

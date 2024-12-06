@@ -22,7 +22,7 @@ export const withMenuForm = <T extends object>(
             >
                 {props.children}
                 {opened && (
-                    <div className="px-6 py-4">
+                    <div className="py-4 md:px-6">
                     <MenuForm
                         id={props.id}
                         parentId={props.parentId}
