@@ -1,3 +1,11 @@
+## Routing
+
+# Lista nawigacji
+[http://localhost:3000/dashboard/menu](http://localhost:3000/dashboard/menu)
+
+# Dashboard
+[http://localhost:3000/dashboard](http://localhost:3000/dashboard)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
