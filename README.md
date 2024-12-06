@@ -6,6 +6,9 @@
 ## Dashboard
 [http://localhost:3000/dashboard](http://localhost:3000/dashboard)
 
+## Deployed on the Vercel
+[https://droplo-menu-teal.vercel.app/dashboard/menu](https://droplo-menu-teal.vercel.app/dashboard/menu)
+
 ## Getting Started
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
