@@ -11,12 +11,12 @@ export const Menu: FC<MenuProps> = ({parentId, openForm, menu, menuLocal, isMenu
 
     const extraProps = onAddMenuItem ? { onClick: () => { onAddMenuItem(); }} : {};
     const filteredMenu = menuLocal.filter(item => item.parentId === parentId);
-
     return filteredMenu.length > 0 ? 
         <div className="rounded-md border border-border-primary bg-faded">
             <DrawMenu 
                 menuLocal={menuLocal}
-                menu={menu} 
+                menu={menu}
+                minLevel={Math.min(...filteredMenu.map(item => item.level))}
                 parentId={parentId} 
                 isMenuCreator={isMenuCreator}
                 setMenu={setMenu} 

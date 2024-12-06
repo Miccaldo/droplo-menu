@@ -20,6 +20,7 @@ export type DragMenuProps = React.ComponentProps<"div"> & {
     menuLocal: MenuItemType[],
     setMenu: React.Dispatch<React.SetStateAction<MenuItemType[]>>,
     isMenuCreator?: boolean
+    minLevel: number
 } & MenuFormEvents
 
 export type DragMenuType = (params: DragMenuProps) => {

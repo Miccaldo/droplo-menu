@@ -5,7 +5,7 @@ import {
 import { DragMenuType } from "./menu.types";
 import MenuItem from "@/app/components/menu/menu-item/menu-item";
 
-export const useDragMenu: DragMenuType = ({menu, menuLocal, setMenu, onCreateMenuItem, onDeleteMenuItem, onEditMenuItem, isMenuCreator}) => {
+export const useDragMenu: DragMenuType = ({menu, menuLocal, minLevel, setMenu, onCreateMenuItem, onDeleteMenuItem, onEditMenuItem, isMenuCreator}) => {
     const usedIds = new Set();
     const sensors = useSensors(
         useSensor(MouseSensor),
@@ -52,7 +52,7 @@ export const useDragMenu: DragMenuType = ({menu, menuLocal, setMenu, onCreateMen
                         onDeleteMenuItem={onDeleteMenuItem}
                         onEditMenuItem={onEditMenuItem}
                         isMenuCreator={isMenuCreator}
-                        minLevel={Math.min(...menuLocal.map(item => item.level))}
+                        minLevel={minLevel}
                     />
                 )
                 usedIds.add(id);

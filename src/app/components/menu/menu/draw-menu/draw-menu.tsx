@@ -7,9 +7,9 @@ import {
 } from "@dnd-kit/sortable";
 import { useDragMenu } from "@/app/hooks/menu/use-drag-menu";
 
-export const DrawMenu: FC<DrawMenuType> = ({menu, menuLocal, setMenu, parentId, onCreateMenuItem, onDeleteMenuItem, onEditMenuItem, isMenuCreator}) => {
+export const DrawMenu: FC<DrawMenuType> = ({menu, menuLocal, minLevel, setMenu, parentId, onCreateMenuItem, onDeleteMenuItem, onEditMenuItem, isMenuCreator}) => {
  
-    const { drawMenu, handleDragEnd, sensors } = useDragMenu({menu, menuLocal, setMenu, parentId, onCreateMenuItem, onDeleteMenuItem, onEditMenuItem, isMenuCreator});
+    const { drawMenu, handleDragEnd, sensors } = useDragMenu({menu, menuLocal, minLevel, setMenu, parentId, onCreateMenuItem, onDeleteMenuItem, onEditMenuItem, isMenuCreator});
 
     return (
         <div>

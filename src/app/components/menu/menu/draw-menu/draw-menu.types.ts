@@ -6,5 +6,6 @@ export type DrawMenuType = React.ComponentProps<"div"> & {
     menu: MenuItemType[],
     menuLocal: MenuItemType[],
     setMenu: React.Dispatch<React.SetStateAction<MenuItemType[]>>,
-    isMenuCreator?: boolean
+    isMenuCreator?: boolean,
+    minLevel: number
 } & MenuFormEvents

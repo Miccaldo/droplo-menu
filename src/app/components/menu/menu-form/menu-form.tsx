@@ -24,7 +24,7 @@ export const MenuForm: FC<MenuFormProps> & { Actions: FC<{ children: ReactNode }
         onSubmitMenuItem(menuItem);
     };
 
-    useEffect(() => (onValidateForm && onValidateForm(formState.isValid)), [formState.isValid])
+    useEffect(() => (onValidateForm && onValidateForm(formState.isValid)), [formState.isValid, onValidateForm])
 
     return (
         <div>
