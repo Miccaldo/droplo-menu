@@ -5,8 +5,13 @@ export const metadata: Metadata = {
   title: "Create Menu"
 };
 
-export default async function MenuPage({ params }: { params: { menuId: string } }) {
-  const { menuId } = await params;
+export default async function MenuPage({
+    params,
+  }: {
+    params: Promise<{ menuId: string }>
+  }) {
+  const menuId = (await params).menuId;
+
   return (
     <div>
         <CreateMenu menuId={menuId} />
