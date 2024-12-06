@@ -73,11 +73,7 @@ export const useCreateMenu = (menuId?: string) => {
     }
 
     const handleBack = () => {
-        if (window.history.length > 1) {
-            router.back();
-        } else {
-            router.push(routing["/dashboard/menu"]);
-        }
+        router.push(routing["/dashboard/menu"]);
     }
 
     return {
