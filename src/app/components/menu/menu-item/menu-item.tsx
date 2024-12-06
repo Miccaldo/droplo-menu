@@ -52,12 +52,14 @@ export const MenuItem: FC<MenuItemProps> = ({id, name, url, openForm, onDeleteMe
                     handleDeleteItem={handleDeleteItem}
                     menuIncludesMenuItem={menuIncludesMenuItem()}
                     openForm={openForm}
+                    level={level}
                 />
                 <ActionsMobile 
                     id={id}
                     handleDeleteItem={handleDeleteItem}
                     menuIncludesMenuItem={menuIncludesMenuItem()}
                     openForm={openForm}
+                    level={level}
                 />
             </div>
 

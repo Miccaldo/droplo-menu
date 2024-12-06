@@ -21,5 +21,6 @@ export type ActionsDesktopType = React.ComponentProps<"div"> & {
     menuIncludesMenuItem: boolean,
     handleDeleteItem: () => void,
     openForm?: (isEditing?: boolean) => void
+    level: number
 }
 export type ActionsMobileType = ActionsDesktopType

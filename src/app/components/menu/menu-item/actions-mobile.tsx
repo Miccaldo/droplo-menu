@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { routing } from "@/app/routing/routing";
 
-export const ActionsMobile: FC<ActionsMobileType> = ({id, handleDeleteItem, openForm, menuIncludesMenuItem}) => {
+export const ActionsMobile: FC<ActionsMobileType> = ({id, handleDeleteItem, openForm, menuIncludesMenuItem, level}) => {
     const [opened, setOpened] = useState(false);
     const ref = useRef<HTMLDivElement | null>(null);
     const router = useRouter();
@@ -28,7 +28,7 @@ export const ActionsMobile: FC<ActionsMobileType> = ({id, handleDeleteItem, open
             <Image src='/images/icons/hamburger.svg' alt="Hamburger" onClick={() => setOpened(!opened)} width={17} height={17}/>
             { opened ? (
                 <div className="absolute right-5 top-0 bg-white text-sm text-nowrap border rounded-md z-10">
-                    <p className={`py-2 px-4 hover:bg-neutral-50 border-b ${!menuIncludesMenuItem ? 'pointer-events-none grayscale opacity-30' : ''}`} onClick={() =>{
+                    <p className={`py-2 px-4 hover:bg-neutral-50 border-b ${(!menuIncludesMenuItem || level >= 3) ? 'pointer-events-none grayscale opacity-30' : ''}`} onClick={() =>{
                     router.push(`${routing["/dashboard/menu/create"]}/${id}`)
                 } }>Dodaj pozycję menu</p>
                     <p className="py-2 px-4 hover:bg-neutral-50 border-b" onClick={() => {
